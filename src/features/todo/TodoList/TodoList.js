@@ -46,7 +46,7 @@ export default function TodoList() {
             </button>
             {/* Button to delete the todo */}
             <button className="btn btn-delete" onClick={() => dispatch(deleteTodoAsync(todo.id))}>
-              X
+            <i class="fa-solid fa-trash"></i>
             </button>
           </li>
         ))}
