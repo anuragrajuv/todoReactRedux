@@ -1,34 +1,56 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchInitialTodosAsync, todoSelector,actions} from '../todoSlice';
+import { fetchInitialTodosAsync, todoSelector, actions, deleteTodoAsync } from '../todoSlice';
 import "./TodoList.css";
 
 export default function TodoList() {
-  const {todos,editingTodo} = useSelector(todoSelector);
+  // Extract todos and editingTodo from the Redux store
+  const { todos, editingTodo } = useSelector(todoSelector);
   const dispatch = useDispatch();
 
+  // Function to handle editing a todo
   const handleEdit = (todo) => {
-    dispatch(actions.setEditingTodo(todo));
+    dispatch(actions.setEditingTodo(todo)); // Set the selected todo as the one being edited
   }
   
-  useEffect(()=>{
+  // Fetch initial todos when the component mounts
+  useEffect(() => {
     dispatch(fetchInitialTodosAsync());
-  },[dispatch]);
+  }, [dispatch]);
 
   return (
     <div className="container">
-    <ul className='list'>
-      {todos.map((todo,index) => (
-        <li key={todo.id} className={todo.completed?"completed-li":null}>
-          <span className="content">{todo.title}</span>
-          <span className={todo.completed ? 'completed':'pending'}>{todo.completed ? 'Completed': 'Pending'}</span>
-          <button className="btn btn-warning"
-          onClick={()=>{dispatch(actions.toggle(index))}}
-          >Toggle</button>
-          <button onClick={()=>handleEdit(todo)} className='btn' disabled={editingTodo?.id===todo.id}>Edit</button>
+      <ul className='list'>
+        {/* Render the list of todos */}
+        {todos.map((todo, index) => (
+          <li key={todo.id} className={todo.completed ? "completed-li" : null}>
+            {/* Display the todo title */}
+            <span className="content">{todo.title}</span>
+            {/* Display the status of the todo */}
+            <span className={todo.completed ? 'completed' : 'pending'}>
+              {todo.completed ? 'Completed' : 'Pending'}
+            </span>
+            {/* Button to toggle the completion status of the todo */}
+            <button className="btn btn-warning"
+              onClick={() => { dispatch(actions.toggle(index)) }}
+            >
+              Toggle
+            </button>
+            {/* Button to edit the todo */}
+            <button 
+              onClick={() => handleEdit(todo)} 
+              className='btn' 
+              disabled={editingTodo?.id === todo.id} // Disable if the todo is already being edited
+            >
+              Edit
+            </button>
+            {/* Button to delete the todo */}
+            <button className="btn btn-delete" onClick={() => dispatch(deleteTodoAsync(todo.id))}>
+              X
+            </button>
           </li>
-      ))}
-    </ul>
+        ))}
+      </ul>
     </div>
   );
 }
