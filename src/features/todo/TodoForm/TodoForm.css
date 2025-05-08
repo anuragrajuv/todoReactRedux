@@ -1,0 +1,17 @@
+form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: baseline;
+    height: 35px;
+}
+
+form input{
+    width: 30%;
+    height: 100%;
+}
+
+button{
+    height: auto;
+}
