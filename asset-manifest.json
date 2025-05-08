@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/anuragrajuv/todoReactRedux/static/css/main.fe0f4692.css",
+    "main.js": "/anuragrajuv/todoReactRedux/static/js/main.08478e6f.js",
+    "index.html": "/anuragrajuv/todoReactRedux/index.html",
+    "main.fe0f4692.css.map": "/anuragrajuv/todoReactRedux/static/css/main.fe0f4692.css.map",
+    "main.08478e6f.js.map": "/anuragrajuv/todoReactRedux/static/js/main.08478e6f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fe0f4692.css",
+    "static/js/main.08478e6f.js"
+  ]
+}
